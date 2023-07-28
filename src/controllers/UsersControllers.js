@@ -8,7 +8,9 @@ class UsersControllers {
 */
 
     create (request, response){
-        
+        const { email, password } = request.body
+
+        response.status(201).json({ email, password })
     }
 }
 

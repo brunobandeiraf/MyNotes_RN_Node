@@ -4,9 +4,11 @@ const UsersControllers = require("../controllers/UsersControllers")
 
 const userRouters = Router()
 
+// Controllers
 const usersControllers = new UsersControllers()
 
-// Assume que já tenha o /users/
+// Rotas
 userRouters.post("/", usersControllers.create)
 
+// Exporta
 module.exports = userRouters
