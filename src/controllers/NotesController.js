@@ -60,6 +60,38 @@ class NotesController{
 
         return response.json()
     }
+
+    async index(request, response){
+        // user_id e title informados pelo usuário
+        const { title, user_id, tags } = request.query
+
+        let notes
+
+        if(tags){ // Se existe a tag
+            // Retorna as tags - separada por , e pega somente as tags
+            const filterTags = tags.split(',').map(tag => tag.trim())
+
+            // Retorna as tags pelo nome da busca
+            notes = await knex("tags")
+            .select([ // retorna esses campos da tabela Notes
+                "notes.id",
+                "notes.title",
+                "notes.user_id",
+            ])
+            .where("notes.user_id", user_id) //  Quando notes.user = user.id
+            .whereLike("notes.title", `%${title}%`) // filtrando a busca pelo título
+            .whereIn("name", filterTags)  
+            .innerJoin("notes", "notes.id", "tags.note_id") // inner join juntando as tabelas
+            .orderBy("notes.title") // ordenar por título
+        }else{
+            // Busca pelo user_id e que tenha a palavra no title
+            const notes = await knex("notes")
+            .where({ user_id })
+            .whereLike("title", `%${title}%`) // Like verifica antes e depois % da palavra %
+            .orderBy("title")
+        }
+        return response.json(notes)
+    }
 }
 
 module.exports = NotesController
