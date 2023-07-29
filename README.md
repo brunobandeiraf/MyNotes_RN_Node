@@ -4,6 +4,13 @@
 - node src/server.js
 - npm start
 - npm run dev
+- npm run migrate
+
+### knex
+Create migration
+- npx knex migrate:make migrationName
+Run latest migration
+- npx knex migrate:latest
 
 ## INSTALL
 - npm init -y
