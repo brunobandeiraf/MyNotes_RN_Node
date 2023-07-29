@@ -8,7 +8,8 @@ const notesRouters = Router()
 const notesControllers = new NotesControllers()
 
 // Rotas
-notesRouters.post("/", notesControllers.create)
+notesRouters.post("/:user_id", notesControllers.create)
+notesRouters.get("/:id", notesControllers.show)
 
 // Exporta
 module.exports = notesRouters
