@@ -10,6 +10,7 @@ const notesControllers = new NotesControllers()
 // Rotas
 notesRouters.post("/:user_id", notesControllers.create)
 notesRouters.get("/:id", notesControllers.show)
+notesRouters.delete("/:id", notesControllers.delete)
 
 // Exporta
 module.exports = notesRouters
