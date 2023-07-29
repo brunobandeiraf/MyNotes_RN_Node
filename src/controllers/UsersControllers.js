@@ -41,8 +41,9 @@ class UsersControllers {
             throw new AppError("Este e-mail já está em uso.")
         }
 
-        user.name = name
-        user.email = email
+        // Se existir valor dentro de name, usar essa variável, se não, usa user.name
+        user.name = name ?? user.name
+        user.email = email ?? user.email
 
         if(password && !old_password){
             throw new AppError("Você precisa informar a senha antiga para definir a nova senha.")
@@ -66,9 +67,9 @@ class UsersControllers {
                 name = ?,
                 email = ?,
                 password = ?,
-                updated_at = ?
+                updated_at = DATETIME('now')
                 WHERE id = ?`,
-            [user.name, user.email, user.password, new Date(), id]
+            [user.name, user.email, user.password, id]
         
         )
 
