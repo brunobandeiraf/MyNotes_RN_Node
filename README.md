@@ -12,6 +12,8 @@
 - npm install express-async-errors --save
 - npm install sqlite3 sqlite --save
 - npm install bcryptjs --save
+- npm install knex --save
+- npx knex init
 
 
 ## DATABASE
