@@ -1,13 +1,12 @@
-# Frontend 
+# FRONTEND
 
 ## RUNNER
 - npm create vite@latest
-- npm install
+- npm run dev
 
-## Navigation
+### NAVIGATION
 
 
 ## INSTALL
-- 
-
+- npm install --save styled-components
 
