@@ -8,7 +8,7 @@ const tagsRouters = Router()
 const tagsControllers = new TagsControllers()
 
 // Rotas
-tagsRouters.index("/:user_id", tagsControllers.index)
+tagsRouters.get("/:user_id", tagsControllers.index)
 
 // Exporta
 module.exports = tagsRouters
