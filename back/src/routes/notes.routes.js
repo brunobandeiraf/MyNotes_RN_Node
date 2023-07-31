@@ -8,7 +8,7 @@ const notesRouters = Router()
 const notesControllers = new NotesControllers()
 
 // Rotas
-notesRouters.index("/", notesControllers.index)
+notesRouters.get("/", notesControllers.index)
 notesRouters.post("/:user_id", notesControllers.create)
 notesRouters.get("/:id", notesControllers.show)
 notesRouters.delete("/:id", notesControllers.delete)
