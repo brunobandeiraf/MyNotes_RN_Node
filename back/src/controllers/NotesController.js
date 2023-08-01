@@ -29,7 +29,7 @@ class NotesController{
         })
 
         // Recuperar os links pelo código note_id
-        const linksInsert = link.map(link => {
+        const linksInsert = links.map(link => {
             return {
                 note_id,
                 url: link
