@@ -9,8 +9,8 @@ export function Details(){
     
     return(
         <Container>
-            <Header/>
-
+             <Header/>
+            
             <Section title="Links úteis">
                 <Links>
                     <li> <a href="#"> Link 1</a> </li>
@@ -21,7 +21,7 @@ export function Details(){
             <Section title="Marcadores">
                 <Tag title="express"/>
                 <Tag title="nodejs"/>
-            </Section>
+            </Section> 
 
             <h1>Olá</h1>
             <span>Bruno Bandeira</span>

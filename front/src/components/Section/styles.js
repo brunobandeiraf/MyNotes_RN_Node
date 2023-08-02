@@ -12,7 +12,7 @@ export const Container = styled.section`
         margin-bottom: 24px;
 
         color: ${({ theme }) => theme.COLORS.GRAY_100};
-        font-size: 200px;
+        font-size: 20px;
         font-weight: 400;
     }
 `
