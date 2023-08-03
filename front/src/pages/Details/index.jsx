@@ -1,4 +1,4 @@
-import { Container, Links } from './styles'
+import { Container, Links, Content } from './styles'
 
 import { Header } from '../../components/Header'
 import { Button } from '../../components/Button'
@@ -12,24 +12,35 @@ export function Details(){
         <Container>
             <Header/>
             
-            <ButtonText title="Excluir nota"/>
-            
-            <Section title="Links úteis">
-                <Links>
-                    <li> <a href="#"> Link 1</a> </li>
-                    <li> <a href="#"> Link 2</a> </li>
-                </Links>
-            </Section>
+            <main>
+                <Content>
+                    <ButtonText title="Excluir nota"/>
+                    
+                    <h1>Introdução ao React</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                        Eos omnis suscipit placeat et voluptatibus nostrum qui. 
+                        Illum nobis aspernatur vitae, ducimus asperiores hic voluptates. 
+                        Debitis iste ipsum tempore soluta excepturi?
+                    </p>
 
-            <Section title="Marcadores">
-                <Tag title="express"/>
-                <Tag title="nodejs"/>
-            </Section> 
+                    <Section title="Links úteis">
+                        <Links>
+                            <li> <a href="#"> Link 1</a> </li>
+                            <li> <a href="#"> Link 2</a> </li>
+                        </Links>
+                    </Section>
 
-            <h1>Olá</h1>
-            <span>Bruno Bandeira</span>
+                    <Section title="Marcadores">
+                        <Tag title="express"/>
+                        <Tag title="nodejs"/>
+                    </Section> 
 
-            <Button title="Voltar"/>
+                    <h1>Olá</h1>
+                    <span>Bruno Bandeira</span>
+
+                    <Button title="Voltar"/>
+                </Content>
+            </main>
         </Container>
     )
 }
