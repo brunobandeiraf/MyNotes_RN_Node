@@ -51,6 +51,9 @@ export const Search  = styled.div`
 `
 export const Content  = styled.div`
     grid-area: content;
+    padding: 0 64px; 
+    overflow-y: auto; //conteúdo não couber, irá aparecer barra de rolagem
+
 `
 export const NewNote = styled.button`
     grid-area: newnote;
