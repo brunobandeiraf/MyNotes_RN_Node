@@ -15,7 +15,7 @@ export const Container = styled.head`
 
     padding: 0 80px;
 
-    background: red;
+    //background: red;
 `
 
 export const Profile = styled.div`
