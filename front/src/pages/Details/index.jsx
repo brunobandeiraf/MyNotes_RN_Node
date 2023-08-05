@@ -35,8 +35,7 @@ export function Details(){
                         <Tag title="nodejs"/>
                     </Section> 
 
-                    <h1>Olá</h1>
-                    <span>Bruno Bandeira</span>
+                    
 
                     <Button title="Voltar"/>
                 </Content>

@@ -5,7 +5,7 @@ export const Container = styled.div`
     height: 100vh;
 
     display: flex;
-    align-items: stretch; //lado a lado
+    align-items: stretch;
 `;
 
 export const Form = styled.form`
@@ -25,7 +25,7 @@ export const Form = styled.form`
 
     > h2  {
         font-size: 24px;
-        margin: 48px 0; //48 em cima e baixo e 0 dos lados
+        margin: 48px 0;
     }
 
     > p {
