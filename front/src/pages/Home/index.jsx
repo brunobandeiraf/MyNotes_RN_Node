@@ -1,5 +1,6 @@
 import { FiPlus, FiSearch } from 'react-icons/fi'
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles'
+import { Link } from 'react-router-dom'
 
 import { Note } from '../../components/Note'
 import { Header } from '../../components/Header'
@@ -57,8 +58,12 @@ export function Home(){
                 </Section>
             </Content>
 
-            <NewNote>
-                {/* <FiPlus/> */}
+            {/*  
+                - Componente Button está usando como referência um elemento Link
+                - passa como parâmetro o destino
+            */}
+            <NewNote to="/new">
+                <FiPlus/>
                 Criar nota
             </NewNote>
         </Container>
