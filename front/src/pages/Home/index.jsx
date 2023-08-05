@@ -35,12 +35,22 @@ export function Home(){
                             { id: '2', name: 'frontend' }   
                         ]
                     }}/>
-                     < Note data={{ 
-                        title: 'React', 
+                    < Note data={{ 
+                        title: 'React Native', 
                         tags: [
                            
                             { id: '1', name: 'Nodejs' }, 
                             { id: '2', name: 'backend' }
+                            
+                        ]
+                    }}/>
+                     < Note data={{ 
+                        title: 'NodeJS', 
+                        tags: [
+                           
+                            { id: '1', name: 'Nodejs' }, 
+                            { id: '2', name: 'backend' },
+                            { id: '3', name: 'frontend' }
                             
                         ]
                     }}/>
