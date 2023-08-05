@@ -9,6 +9,18 @@ export const Container = styled.div`
     grid-template-areas: 
     "header"
     "content";
+
+    //somente o main participada da rolagem e header fica fixo
+    > main{
+        grid-area: content;
+        overflow-y: auto; 
+    }
+
+    .tags {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; //não caber na linha, joga pra baixo
+    }
 `;
 
 export const Form = styled.form`
