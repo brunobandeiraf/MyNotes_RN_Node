@@ -21,6 +21,7 @@ Run latest migration
 - npm install bcryptjs --save
 - npm install knex --save
 - npx knex init
+- npm install jsonwebtoken
 
 
 ## DATABASE
