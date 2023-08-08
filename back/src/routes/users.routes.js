@@ -1,18 +1,18 @@
 const { Router } = require("express")
 
-const UsersControllers = require("../controllers/UsersControllers")
+const UsersController = require("../controllers/UsersController")
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated")
 
-const userRouters = Router()
+const usersRoutes = Router()
 
 // Controllers
-const usersControllers = new UsersControllers()
+const usersController = new UsersController()
 
 // Rotas
-userRouters.post("/", usersControllers.create)
+usersRoutes.post("/", usersController.create);
 
 // Precisa estar autenticado e não precisa passar o id do usuário
-userRouters.put("/", ensureAuthenticated, usersControllers.update)
+usersRoutes.put("/", ensureAuthenticated, usersController.update)
 
 // Exporta
 module.exports = userRouters
