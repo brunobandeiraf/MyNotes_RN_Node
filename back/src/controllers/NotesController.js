@@ -2,26 +2,10 @@ const knex = require("../database/knex")
 
 class NotesController{
 
-    async show(request, response){
-        const { id } = request.params
-
-        // returnar os dados da nota pelo id
-        const note = await knex("notes").where({ id }).first()
-        // returnar as tags baseada pelo id e ordenada pelo name
-        const tags = await knex("tags").where({ note_id: id  }).orderBy("name")
-        // returnar os links baseada pelo id e ordenados pela data de criação
-        const links = await knex("links").where({ note_id: id  }).orderBy("created_at")
-        
-        return response.json({
-            ...note, //todas as informações da notas
-            tags, 
-            links
-        })
-    }
-
     async create(request, response){
         const { title, description, tags, links } = request.body
-        const { user_id } = request.params
+        //const { user_id } = request.params
+        const user_id = request.user.id
 
         // Inserir tags
         const [note_id] = await knex("notes").insert({
@@ -52,6 +36,23 @@ class NotesController{
 
         return response.json()
     }
+    
+    async show(request, response){
+        const { id } = request.params
+
+        // returnar os dados da nota pelo id
+        const note = await knex("notes").where({ id }).first()
+        // returnar as tags baseada pelo id e ordenada pelo name
+        const tags = await knex("tags").where({ note_id: id  }).orderBy("name")
+        // returnar os links baseada pelo id e ordenados pela data de criação
+        const links = await knex("links").where({ note_id: id  }).orderBy("created_at")
+        
+        return response.json({
+            ...note, //todas as informações da notas
+            tags, 
+            links
+        })
+    }
 
     async delete(request, response){
         const { id } = request.params
@@ -63,7 +64,10 @@ class NotesController{
 
     async index(request, response){
         // user_id e title informados pelo usuário
-        const { title, user_id, tags } = request.query
+        //const { title, user_id, tags } = request.query
+        const { title, tags } = request.query
+        const user_id = request.user.id
+
 
         let notes
 
