@@ -12,6 +12,7 @@ const usersController = new UsersController()
 usersRoutes.post("/", usersController.create);
 
 // Precisa estar autenticado e não precisa passar o id do usuário
+//usersRoutes.put("/:id", usersController.update)
 usersRoutes.put("/", ensureAuthenticated, usersController.update)
 
 // Exporta

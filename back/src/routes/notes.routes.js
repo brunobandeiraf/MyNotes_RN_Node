@@ -10,7 +10,7 @@ const notesRouter = Router()
 // Controllers
 const notesController = new NotesController()
 
-// notesRouter em todas as rotas
+// notesRouter será usado em todas as rotas
 notesRouter.use(ensureAuthenticated)
 
 // Rotas

@@ -31,6 +31,7 @@ class UsersController {
         const user_id = request.user.id
 
         const database = await sqliteConnection()
+        //const user = await database.get("SELECT * FROM users WHERE id = (?)", id)
         const user = await database.get("SELECT * FROM users WHERE id = (?)", [user_id])
 
         if(!user){
@@ -40,7 +41,7 @@ class UsersController {
         const userWithUpdateEmail = await database.get("SELECT * FROM users WHERE email = (?)", [email])
 
         if(userWithUpdateEmail && userWithUpdateEmail.id !== user.id){
-            throw new AppError("Este e-mail já está em uso.")
+            throw new AppError("Este e-mail já está em uso :).")
         }
 
         // Se existir valor dentro de name, usar essa variável, se não, usa user.name
@@ -71,6 +72,7 @@ class UsersController {
                 password = ?,
                 updated_at = DATETIME('now')
                 WHERE id = ?`,
+            //[user.name, user.email, user.password, id]
             [user.name, user.email, user.password, user_id]
         
         )

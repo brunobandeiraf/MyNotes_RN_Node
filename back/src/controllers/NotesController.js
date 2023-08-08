@@ -66,6 +66,8 @@ class NotesController{
         // user_id e title informados pelo usuário
         //const { title, user_id, tags } = request.query
         const { title, tags } = request.query
+        
+        // Pegando da session do usuário
         const user_id = request.user.id
 
 

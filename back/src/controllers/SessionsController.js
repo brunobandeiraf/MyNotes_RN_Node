@@ -13,7 +13,7 @@ class SessionsController{
 
         // Se usuário não existe
         if(!user){
-            throw new AppError("E-mail e/ou senha incorreta", 401)
+            throw new AppError("E-mail e/ou senha incorreta - user nao existe", 401)
         }
 
         // Usa o bcrypt para comparar as senhas
@@ -24,10 +24,10 @@ class SessionsController{
         }
 
         // Criando o token
-        const { secret, expireIn } = authConfig.jwt
+        const { secret, expiresIn } = authConfig.jwt
         const token = sign({} , secret, {
             subject: String(user.id),
-            expireIn
+            expiresIn
         }) 
 
 
