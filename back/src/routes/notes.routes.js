@@ -1,24 +1,24 @@
 const { Router } = require("express")
 
-const NotesControllers = require("../controllers/NotesController")
+const NotesController = require("../controllers/NotesController")
 // Middleware de autenticação
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated")
 
 
-const notesRouters = Router()
+const notesRouter = Router()
 
 // Controllers
-const notesControllers = new NotesControllers()
+const notesController = new NotesController()
 
-// notesRouters em todas as rotas
-notesRouters.use(ensureAuthenticated)
+// notesRouter em todas as rotas
+notesRouter.use(ensureAuthenticated)
 
 // Rotas
-notesRouters.post("/", notesControllers.create)
-//notesRouters.post("/:user_id", notesControllers.create)
-notesRouters.get("/", notesControllers.index)
-notesRouters.delete("/:id", notesControllers.delete)
-notesRouters.get("/:id", notesControllers.show)
+notesRouter.post("/", notesController.create)
+//notesRouters.post("/:user_id", notesController.create)
+notesRouter.get("/", notesController.index)
+notesRouter.delete("/:id", notesController.delete)
+notesRouter.get("/:id", notesController.show)
 
 // Exporta
-module.exports = notesRouters
+module.exports = notesRouter

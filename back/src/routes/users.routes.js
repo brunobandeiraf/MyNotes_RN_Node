@@ -15,4 +15,4 @@ usersRoutes.post("/", usersController.create);
 usersRoutes.put("/", ensureAuthenticated, usersController.update)
 
 // Exporta
-module.exports = userRouters
+module.exports = usersRoutes

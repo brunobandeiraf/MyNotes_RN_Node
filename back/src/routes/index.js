@@ -1,15 +1,17 @@
-const {Router} = require("express");
+const { Router } = require("express");
 
 const usersRoutes = require("./users.routes.js")
-const dishesRoutes = require("./dishes.routes.js")
+const notesRoutes = require("./notes.routes.js")
 const tagsRouters = require("./tags.routes.js")
+
+
+const routes = Router()
 
 const sessionsRouter = require("./sessions.routes")
 routes.use("/sessions", sessionsRouter)
 
-const routes = Router()
 routes.use("/users", usersRoutes)
-routes.use("/notes", dishesRoutes)
+routes.use("/notes", notesRoutes)
 routes.use("/tags", tagsRouters)
 
 

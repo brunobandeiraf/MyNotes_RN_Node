@@ -2,7 +2,7 @@ const { hash, compare } = require("bcryptjs")
 const AppError = require("../utils/AppError")
 const sqliteConnection = require("../database/sqlite")
 
-class UsersControllers {
+class UsersController {
 
     async create (request, response){
         const { name, email, password } = request.body
@@ -79,7 +79,7 @@ class UsersControllers {
     }
 }
 
-module.exports = UsersControllers
+module.exports = UsersController
 
 /*
     - index - GET para listar vários registros.
