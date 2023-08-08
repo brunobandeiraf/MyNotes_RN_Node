@@ -22,6 +22,7 @@ Run latest migration
 - npm install knex --save
 - npx knex init
 - npm install jsonwebtoken
+- npm install multer //upload de arquivos
 
 
 ## DATABASE
