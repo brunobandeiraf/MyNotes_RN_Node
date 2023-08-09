@@ -3,7 +3,9 @@ const path  =  require("path")
 const multer = require("multer")
 const crypto = require("crypto")
 
+// Endereço de quem a imagem chega
 const TMP_FOLDER = path.resolver(__dirname, "..", "..", "tmp")
+// Endereço destino da imagem
 const UPLOADS_FOLDER = path.resolver(__dirname, "uploads")
 
 const MULTER = {
