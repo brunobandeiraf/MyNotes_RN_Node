@@ -23,6 +23,7 @@ Run latest migration
 - npx knex init
 - npm install jsonwebtoken
 - npm install multer //upload de arquivos
+- npm install cors // habilitar back atenda o front
 
 
 ## DATABASE
