@@ -6,7 +6,14 @@ import { Button } from '../../components/Button'
 
 import { Container, Form, Background } from './styles'
 
+// Responsável pelo contexto e entendimento se usuário está logado
+import { useContext } from 'react'
+import { MyContext } from '../../myContext'
+
 export function SignIn(){
+
+    const data = useContext(MyContext)
+
     return(
         <Container>
             <Form>
