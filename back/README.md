@@ -25,7 +25,6 @@ Run latest migration
 - npm install multer //upload de arquivos
 - npm install cors // habilitar back atenda o front
 
-
 ## DATABASE
 USERS
 - id, name, email, password, avatar, created_at, updated_at
