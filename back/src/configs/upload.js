@@ -4,9 +4,9 @@ const multer = require("multer")
 const crypto = require("crypto")
 
 // Endereço de quem a imagem chega
-const TMP_FOLDER = path.resolver(__dirname, "..", "..", "tmp")
+const TMP_FOLDER = path.resolve(__dirname, "..", "..", "tmp")
 // Endereço destino da imagem
-const UPLOADS_FOLDER = path.resolver(__dirname, "uploads")
+const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, "uploads")
 
 const MULTER = {
     storage: multer.diskStorage({
