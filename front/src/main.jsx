@@ -7,16 +7,18 @@ import theme from './styles/theme'
 
 import { Routes } from './routes'
 
-import { MyContext } from './myContext'
+// Context para controlar rotas de autenticação
+import { AuthProvider } from './hooks/auth'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <ThemeProvider theme={theme}>
-            <GlobalStyles/>
-            {/* MyContext vai definir a permissão das rotas */}
-            <MyContext.Provider value={{ email:"bruno@exemplo.com" }}>
-                <Routes /> 
-            </MyContext.Provider>
+            <GlobalStyles />
+            {/* AuthProvider vai definir a permissão das rotas */}
+            <AuthProvider>
+                <Routes />
+            </AuthProvider>    
+          
         </ThemeProvider>
     </React.StrictMode>
 )

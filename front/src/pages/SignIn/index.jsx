@@ -7,14 +7,15 @@ import { Button } from '../../components/Button'
 import { Container, Form, Background } from './styles'
 
 // Responsável pelo contexto e entendimento se usuário está logado
-import { useContext } from 'react'
-import { MyContext } from '../../myContext'
+import { useAuth } from '../../hooks/auth'
 
-export function SignIn(){
+export function SignIn() {
 
-    const data = useContext(MyContext)
+    // Passando o contexto de autenticação das rotas
+    const data = useAuth()
+    console.log("MEU CONTEXTO", data)
 
-    return(
+    return (
         <Container>
             <Form>
                 <h1>Your Notes</h1>
@@ -22,26 +23,26 @@ export function SignIn(){
 
                 <h2>Faça seu login</h2>
 
-                <Input 
+                <Input
                     placeholder="E-mail"
                     type="text"
                     icon={FiMail}
                 />
 
-                <Input 
+                <Input
                     placeholder="Senha"
                     type="password"
                     icon={FiLock}
                 />
 
-                <Button title="Entrar"/> 
+                <Button title="Entrar" />
 
                 <Link to="/register">
                     Criar conta
                 </Link>
             </Form>
 
-            < Background/>
+            < Background />
         </Container>
     )
 }
