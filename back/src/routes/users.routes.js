@@ -1,5 +1,6 @@
 const { Router } = require("express")
 const UsersController = require("../controllers/UsersController")
+const UserAvatarController = require("../controllers/UserAvatarController")
 
 // Sessions
 const ensureAuthenticated = require("../middlewares/ensureAuthenticated")
@@ -13,6 +14,7 @@ const usersRoutes = Router()
 
 // Controllers
 const usersController = new UsersController()
+const userAvatarController = new UserAvatarController()
 
 // Rotas
 usersRoutes.post("/", usersController.create);
@@ -24,10 +26,7 @@ usersRoutes.put("/", ensureAuthenticated, usersController.update)
 // patch para atualizar um campo específico
 // Salvar a imagem em uma pasta e armazenar a referência
 // upload.single - apenas um arquivo
-usersRoutes.patch("/avatar", ensureAuthenticated, upload.single("avatar"), (request, response) => {
-    console.log(request.file.filename)
-    response.json()
-})
+usersRoutes.patch("/avatar", ensureAuthenticated, upload.single("avatar"), userAvatarController.update)
 
 // Exporta
 module.exports = usersRoutes
