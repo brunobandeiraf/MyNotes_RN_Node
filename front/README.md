@@ -11,6 +11,7 @@
 ## INSTALL
 - npm install --save styled-components
 - npm install react-icons --save
+- npm install axios // consumir requisições http
 
 ## links
 - https://react-icons.github.io/react-icons/
