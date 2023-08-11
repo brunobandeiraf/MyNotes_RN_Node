@@ -1,23 +1,28 @@
 import { RiShutDownLine } from 'react-icons/ri'
 import { useAuth } from '../../hooks/auth'
 
+import { api } from '../../services/api'
 import { Container, Profile, Logout} from './styles'
 
 export function Header(){
 
     // Acessando a função signOut do useAuth
-    const { signOut } = useAuth()
+    const { signOut, user } = useAuth()
     // Não foi preciso redirecionar porque na rota index já realiza o controle das sessions
+
+    const avatarURL = user.avatar ? 
+        `${api.defaults.baseURL}/files/${user.avatar}`
+        : avatarPlaceHolder
 
     return(
         <Container>
             <Profile to="/profile">
-                <img src="https://github.com/brunobandeiraf.png"
-                    alt="Foto de usuário"
+                <img src={avatarURL}
+                    alt={user.name}
                 />
                 <div>
                     <span>Bem-vindo!</span>
-                    <strong>Bruno Bandeira</strong>
+                    <strong>{user.name}</strong>
                 </div>
             </Profile>
 
