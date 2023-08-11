@@ -12,8 +12,15 @@ import { Container, Form } from './styles'
 
 export function New(){
 
+    const [links, setlinks] = useState([])
+    const [newLink, setNewLink] = useState([]) // link do momento
 
-    
+    function handleAddLink(){
+        // Pega tudo que tem antes e + o novo estado
+        setlinks(prevState => [...prevState, newLink])
+        // Reseta depois o link
+        setNewLink("")
+    }
 
     return(
         <Container>
@@ -35,8 +42,23 @@ export function New(){
                     />
 
                     <Section title="Links úteis">
-                        <NoteItem value="https://instagram.com/brunobandeiraf"/>
-                        <NoteItem isNew placeholder="Novo link"/>
+                        {
+                            // links.map(() => ())
+                            links.map((link, index) => ( // index é a chave padrão do map
+                                <NoteItem 
+                                    key={String(index)} // Obrigatório uma chave
+                                    value={ link }
+                                    onClick={ () => {} } // Função que não faz nada
+                                />
+                            ))
+                        }
+                        <NoteItem 
+                            isNew 
+                            placeholder="Novo link"
+                            value={ newLink }
+                            onChange={ e => setNewLink(e.target.value) }
+                            onClick={ handleAddLink }
+                        />
                     </Section>
 
                     <Section title="Marcadores">
