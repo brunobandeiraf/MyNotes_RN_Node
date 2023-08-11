@@ -5,11 +5,16 @@ import { Input } from '../../components/Input'
 import { Textarea } from '../../components/Textarea'
 import { NoteItem } from '../../components/NoteItem'
 import { Section } from '../../components/Section'
+import { useState } from 'react'
 import { Button } from '../../components/Button'
 
 import { Container, Form } from './styles'
 
 export function New(){
+
+
+    
+
     return(
         <Container>
             <Header/>
