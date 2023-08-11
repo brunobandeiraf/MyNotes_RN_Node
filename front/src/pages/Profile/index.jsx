@@ -22,8 +22,7 @@ export function Profile(){
     const [passwordNew, setPasswordNew] = useState()
 
     const avatarURL = user.avatar ? 
-        `${api.defaults.baseURL}/files/${user.avatar}`
-        : avatarPlaceHolder
+        `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceHolder
 
     // Começa com o avatar vindo da rota de autenticação
     const [avatar, setAvatar] = useState(avatarURL) 

@@ -2,6 +2,7 @@ import { RiShutDownLine } from 'react-icons/ri'
 import { useAuth } from '../../hooks/auth'
 
 import { api } from '../../services/api'
+import avatarPlaceHolder from '../../assets/avatar_placeholder.svg'
 import { Container, Profile, Logout} from './styles'
 
 export function Header(){
@@ -11,14 +12,13 @@ export function Header(){
     // Não foi preciso redirecionar porque na rota index já realiza o controle das sessions
 
     const avatarURL = user.avatar ? 
-        `${api.defaults.baseURL}/files/${user.avatar}`
-        : avatarPlaceHolder
+        `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceHolder
 
     return(
         <Container>
             <Profile to="/profile">
-                <img src={avatarURL}
-                    alt={user.name}
+                <img src= {avatarURL}
+                    alt= {user.name}
                 />
                 <div>
                     <span>Bem-vindo!</span>
