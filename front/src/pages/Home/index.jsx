@@ -15,6 +15,26 @@ export function Home(){
 
     // useState([]) - Define um vetor de tags
     const [tags, setTags] = useState([])
+    const [tagsSelected, setTagsSelected] = useState([])
+
+    function handleTagSelected(tagName){
+        // Verifica se já foi selecionado
+        // Retorna true ou false
+        // objetiva remover as clicadas duas vezes
+        const alreadySelected = tagsSelected.includes(tagName)
+        
+        if(alreadySelected){ // Se tiver selecionado
+            // Percorrer as tags e retornar somente as não selecionadas
+            const filterTags = tagsSelected.filter(tag => tag !== tagName)
+            // setTagsSelected recebe somente as selecionadas
+            setTagsSelected(filterTags)
+        }else{ //senão
+            setTagsSelected(prevState => [...prevState, tagName])
+            // ... spread operation
+            // Objetiva manter a seleção e + o novo selecionado
+        }
+        
+    }
 
     // Atualiza as Tags ao ser carregada a página
     useEffect(() => {
@@ -38,7 +58,9 @@ export function Home(){
                 <li>
                     <ButtonText
                         title="Todos"
-                        isActive
+                        onClick={()=> handleTagSelected("all")}
+                        isActive={tagsSelected.length === 0}
+                        // Se tamanho do array for 0, retorna true
                     />
                 </li>
                 {
@@ -48,6 +70,9 @@ export function Home(){
                         <li key={String(tag.id)}>
                             <ButtonText 
                                 title={tag.name}
+                                onClick={() => handleTagSelected(tag.name)}
+                                isActive={tagsSelected.includes(tag.name)}
+                                //includes verifica no array se existe o parâmetro
                             />
                         </li>
                     ))
