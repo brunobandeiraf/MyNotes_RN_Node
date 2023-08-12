@@ -45,6 +45,8 @@ export const Menu  = styled.ul`
     > li {
         margin-bottom: 24px;
     }
+
+    // Cor gray muda no componente ButtonText
 `
 export const Search  = styled.div`
     grid-area: search;
