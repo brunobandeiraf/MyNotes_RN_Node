@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FiPlus, FiSearch } from 'react-icons/fi'
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { api } from '../../services/api'
 
@@ -19,6 +19,8 @@ export function Home(){
     // useState([]) - Define um vetor de tags
     const [tags, setTags] = useState([])
     const [tagsSelected, setTagsSelected] = useState([])
+
+    const navigate = useNavigate()
 
     function handleTagSelected(tagName){
 
@@ -42,6 +44,10 @@ export function Home(){
             // Objetiva manter a seleção e + o novo selecionado
         }
         
+    }
+
+    function handleDetails(idNote){
+        navigate(`/details/${idNote}`)
     }
 
     // Atualiza as Tags ao ser carregada a página
@@ -104,7 +110,7 @@ export function Home(){
                 <Input 
                     placeholder="Pesquisar pelo título" 
                     // icon={FiSearch}
-                    onChange={() => setSearch(e.target.value)}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
             </Search>
 
@@ -115,6 +121,7 @@ export function Home(){
                             <Note
                                 key={String(note.id)}
                                 data={note}
+                                onClick={() => handleDetails(note.id)}
                             />  
                         ))
                     }
