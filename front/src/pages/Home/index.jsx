@@ -13,11 +13,19 @@ import { ButtonText } from '../../components/ButtonText'
 
 export function Home(){
 
+    const [search, setSearch] = useState("")
+    const [notes, setNotes] = useState([]) // Armazena array de notas listadas na home
+
     // useState([]) - Define um vetor de tags
     const [tags, setTags] = useState([])
     const [tagsSelected, setTagsSelected] = useState([])
 
     function handleTagSelected(tagName){
+
+        if(tagName === "all"){
+            return setTagsSelected([])
+        }
+
         // Verifica se já foi selecionado
         // Retorna true ou false
         // objetiva remover as clicadas duas vezes
@@ -25,9 +33,9 @@ export function Home(){
         
         if(alreadySelected){ // Se tiver selecionado
             // Percorrer as tags e retornar somente as não selecionadas
-            const filterTags = tagsSelected.filter(tag => tag !== tagName)
+            const filteredTags = tagsSelected.filter(tag => tag !== tagName)
             // setTagsSelected recebe somente as selecionadas
-            setTagsSelected(filterTags)
+            setTagsSelected(filteredTags)
         }else{ //senão
             setTagsSelected(prevState => [...prevState, tagName])
             // ... spread operation
@@ -46,6 +54,18 @@ export function Home(){
         fetchTags() // chama a função anterior
     }, [])
     
+    useEffect(() =>{
+        async function fetchNotes(){
+            const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`)
+            console.log(response.data)
+            setNotes(response.data)
+        }
+        fetchNotes()
+    }, [tagsSelected, search])
+    // Quando mudar os estados de [tagsSelected, search]
+    // Vai acionar o useEffect
+
+
     return(
         <Container>
             <Brand>
@@ -72,7 +92,8 @@ export function Home(){
                                 title={tag.name}
                                 onClick={() => handleTagSelected(tag.name)}
                                 isActive={tagsSelected.includes(tag.name)}
-                                //includes verifica no array se existe o parâmetro
+                                // includes verifica no array se existe o parâmetro
+                                // true se existir e false senão
                             />
                         </li>
                     ))
@@ -80,37 +101,32 @@ export function Home(){
             </Menu>
 
             <Search>
-                <Input placeholder="Pesquisar pelo título" icon={FiSearch}/>
+                <Input 
+                    placeholder="Pesquisar pelo título" 
+                    // icon={FiSearch}
+                    onChange={() => setSearch(e.target.value)}
+                />
             </Search>
 
             <Content>
                 <Section title="Minhas notas">
-                    < Note data={{ 
-                        title: 'React', 
-                        tags: [
-                            { id: '1', name: 'react' }, 
-                            { id: '2', name: 'frontend' }   
-                        ]
-                    }}/>
-                    < Note data={{ 
-                        title: 'React Native', 
-                        tags: [
-                           
-                            { id: '1', name: 'Nodejs' }, 
-                            { id: '2', name: 'backend' }
-                            
-                        ]
-                    }}/>
-                     < Note data={{ 
-                        title: 'NodeJS', 
-                        tags: [
-                           
-                            { id: '1', name: 'Nodejs' }, 
-                            { id: '2', name: 'backend' },
-                            { id: '3', name: 'frontend' }
-                            
-                        ]
-                    }}/>
+                    {
+                        notes.map(note => (
+                            <Note
+                                key={String(note.id)}
+                                data={note}
+                            />  
+                        ))
+                    }
+                        {/* < Note 
+                            data={{ 
+                                title: {},
+                                tags: [
+                                    { id: '1', name: 'react' }, 
+                                    { id: '2', name: 'frontend' }   
+                                ]
+                            }}
+                        /> */}
                 </Section>
             </Content>
 

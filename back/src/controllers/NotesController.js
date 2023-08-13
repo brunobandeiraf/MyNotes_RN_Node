@@ -90,6 +90,7 @@ class NotesController{
             .whereLike("notes.title", `%${title}%`) // filtrando a busca pelo título
             .whereIn("name", filterTags)  
             .innerJoin("notes", "notes.id", "tags.note_id") // inner join juntando as tabelas
+            .groupBy("notes.id") // Filtrar pelo Id - mostrar notas única vez na lista
             .orderBy("notes.title") // ordenar por título
 
             const userTags = await knex("tags").where({ user_id })
