@@ -24,6 +24,7 @@ Run latest migration
 - npm install jsonwebtoken
 - npm install multer //upload de arquivos
 - npm install cors // habilitar back atenda o front
+- npm install dotenv --save // variáveis de ambientes
 
 ## DATABASE
 USERS
