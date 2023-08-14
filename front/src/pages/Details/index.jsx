@@ -18,8 +18,18 @@ export function Details(){
     const navigate = useNavigate()
 
     function handleBack(){
-        navigate("/")
+        navigate("/") // Envia usuário para o Home
     }
+
+    async function handleRemove(){
+        const confirm = window.confirm("Deseja realmente remover a nota?")
+
+        if(confirm){
+            await api.delete(`/notes/${params.id}`)
+            navigate("/")
+        }
+    }
+
 
     useEffect(() => {
         async function fetchNotes(){
@@ -38,7 +48,10 @@ export function Details(){
                 // Se tem conteúdo mostra o data, senão tem, não mostra
                 <main>
                  <Content>
-                     <ButtonText title="Excluir nota"/>
+                     <ButtonText 
+                        title="Excluir nota"
+                        onClick={handleRemove}
+                    />
                      
                      <h1>
                         {data.title}
