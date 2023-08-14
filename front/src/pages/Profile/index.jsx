@@ -39,14 +39,20 @@ export function Profile(){
 
     async function handleUpdate(){
         // Objeto com os dados atualizado pelo usuário
-        const user = {
+        const updated = {
             name, 
             email, 
             password: passwordNew,
             old_password: passwordOld
         }
+        
+        // assign updated e insere em user. 
+        // Verifica e os atributos que não possuem em updated, são atribuidos de user
+        // Em resumo: avatar não está sendo passado no objeto anterior. Mantém o avatar
+        const userUpdated = Object.assign(user, updated)
+
         // Envia para o Hooks/Auth na função para buscar a rota de update
-        await updateProfile({ user, avatarFile }) 
+        await updateProfile({ user: userUpdated, avatarFile }) 
     }
 
     function handleChangeAvatar(event){
