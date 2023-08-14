@@ -1,10 +1,13 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import { FiArrowLeft, FiUser, FiMail, FiLock, FiCamera } from 'react-icons/fi'
-import { Link } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/auth'
 
 import { api } from '../../services/api'
+
+import { ButtonText } from "../../components/ButtonText"
 import avatarPlaceHolder from '../../assets/avatar_placeholder.svg'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
@@ -27,6 +30,12 @@ export function Profile(){
     // Começa com o avatar vindo da rota de autenticação
     const [avatar, setAvatar] = useState(avatarURL) 
     const [avatarFile, setAvatarFile] = useState(null) 
+
+    const navigate = useNavigate() // Responsável por direcionar o usuário
+
+    function handleBack(){
+        navigate(-1)
+    }
 
     async function handleUpdate(){
         // Objeto com os dados atualizado pelo usuário
@@ -52,9 +61,9 @@ export function Profile(){
     return (
         <Container>
             <header>
-                <Link to="/">
-                    <FiArrowLeft />
-                </Link>
+                <button type="button" onClick={handleBack}>
+                    <FiArrowLeft size={24}/>
+                </button>
             </header>
 
             <Form>

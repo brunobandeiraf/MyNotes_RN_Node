@@ -1,12 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { Header } from '../../components/Header'
-import { Input } from '../../components/Input'
+import { ButtonText } from "../../components/ButtonText" 
 import { Textarea } from '../../components/Textarea'
 import { NoteItem } from '../../components/NoteItem'
 import { Section } from '../../components/Section'
-import { useState } from 'react'
 import { Button } from '../../components/Button'
+import { Header } from '../../components/Header'
+import { Input } from '../../components/Input'
 
 import { api } from '../../services/api'
 
@@ -25,6 +26,10 @@ export function New(){
     const [newTag, setNewTag] = useState("") 
 
     const navigate = useNavigate() // Responsável por direcionar o usuário
+
+    function handleBack(){
+        navigate(-1)
+    }
 
     function handleAddLink(){
         // Pega tudo que tem antes e + o novo estado
@@ -71,7 +76,7 @@ export function New(){
         })
 
         alert("Nota criada com sucesso!")
-        navigate("/") // Levar usuário para a Home
+        navigate(-1) // Levar usuário para a Home
     }
 
     return(
@@ -82,7 +87,10 @@ export function New(){
                 <Form>
                     <header>
                         <h1>Criar nota</h1>
-                        <Link to="/">voltar</Link>
+                        <ButtonText 
+                            title="Voltar"
+                            onClick={handleBack}
+                        />
                     </header>
 
                     <Input 

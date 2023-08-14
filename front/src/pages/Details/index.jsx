@@ -18,7 +18,9 @@ export function Details(){
     const navigate = useNavigate()
 
     function handleBack(){
-        navigate("/") // Envia usuário para o Home
+        navigate(-1) 
+        // Envia usuário para o Home - rota anterior
+        // Não empilha novas rotas de navegação
     }
 
     async function handleRemove(){
@@ -26,7 +28,7 @@ export function Details(){
 
         if(confirm){
             await api.delete(`/notes/${params.id}`)
-            navigate("/")
+            navigate(-1)
         }
     }
 
