@@ -2,7 +2,7 @@
 
 ## RUNNER
 - node src/server.js
-- npm start
+- npm start 
 - npm run dev
 - npm run migrate
 
@@ -25,6 +25,8 @@ Run latest migration
 - npm install multer //upload de arquivos
 - npm install cors // habilitar back atenda o front
 - npm install dotenv --save // variáveis de ambientes
+- npx pm2 init // tornar api on-line 24/7
+- npm install pm2 // Instalar pm2
 
 ## DATABASE
 USERS
@@ -35,3 +37,10 @@ TAGS
 - id, note_id, user_id
 LINKS
 - id, note_id, url, created_at
+
+
+## LINKS
+- https://pm2.keymetrics.io/docs/usage/use-pm2-with-cloud-providers/
+
+## OTHERS
+- "start": "node ./src/server.js",
