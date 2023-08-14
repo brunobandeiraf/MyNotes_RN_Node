@@ -1,4 +1,9 @@
 import { Container, Links, Content } from './styles'
+import { useParams, useNavigate } from 'react-router-dom'
+// useParams busca os parâmetros passado pela rota
+import { useState, useEffect } from 'react'
+
+import { api } from '../../services/api'
 
 import { Header } from '../../components/Header'
 import { Button } from '../../components/Button'
@@ -8,38 +13,80 @@ import { ButtonText } from '../../components/ButtonText'
 
 export function Details(){
     
+    const [data, setData] = useState(null)
+    const params = useParams()
+    const navigate = useNavigate()
+
+    function handleBack(){
+        navigate("/")
+    }
+
+    useEffect(() => {
+        async function fetchNotes(){
+            const response = await api.get(`/notes/${params.id}`)
+            setData(response.data)
+            //params.id é passado pelo parâmetro e capturado pelo useParams
+        }
+        fetchNotes()
+    }, [])
+
     return(
         <Container>
             <Header/>
-            
-            <main>
-                <Content>
-                    <ButtonText title="Excluir nota"/>
-                    
-                    <h1>Introdução ao React</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Eos omnis suscipit placeat et voluptatibus nostrum qui. 
-                        Illum nobis aspernatur vitae, ducimus asperiores hic voluptates. 
-                        Debitis iste ipsum tempore soluta excepturi?
-                    </p>
+            {
+                data && 
+                // Se tem conteúdo mostra o data, senão tem, não mostra
+                <main>
+                 <Content>
+                     <ButtonText title="Excluir nota"/>
+                     
+                     <h1>
+                        {data.title}
+                     </h1>
+                     <p>
+                        {data.description}
+                     </p>
 
-                    <Section title="Links úteis">
-                        <Links>
-                            <li> <a href="#"> Link 1</a> </li>
-                            <li> <a href="#"> Link 2</a> </li>
-                        </Links>
-                    </Section>
+                    {
+                        data.links && // Só mostra se tiver
+                        <Section title="Links úteis">
+                            <Links>
+                                {
+                                    data.links.map(link => (
+                                        <li key={String(link.id)}> 
+                                            <a href={link.url} target="_black"> 
+                                                {link.url}
+                                            </a> 
+                                        </li>
+                                    ))
+                                } 
+                            </Links>
+                        </Section>
+                    }
 
-                    <Section title="Marcadores">
-                        <Tag title="express"/>
-                        <Tag title="nodejs"/>
-                    </Section> 
-
-                    
-
-                    <Button title="Voltar"/>
-                </Content>
-            </main>
+                    {
+                        data.tags && // Só mostra se tiver
+                        <Section title="Marcadores">
+                            {
+                                data.tags.map(link => (
+                                    <Tag
+                                        key={String(tag.id)} 
+                                        title={tag.name}
+                                    />
+                                ))
+                            }
+                        </Section> 
+                    }
+                     
+ 
+                    <Button 
+                        title="Voltar"
+                        onClick={handleBack}
+                    />
+                 </Content>
+             </main>
+            }
+           
         </Container>
     )
 }
