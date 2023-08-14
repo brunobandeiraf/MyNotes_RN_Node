@@ -82,28 +82,16 @@ class NotesController{
             // Retorna as tags pelo nome da busca
             notes = await knex("tags")
             .select([ // retorna esses campos da tabela Notes
-                "notes.id",
+                "notes.id", // nome da tabela e do campo
                 "notes.title",
                 "notes.user_id",
             ])
             .where("notes.user_id", user_id) //  Quando notes.user = user.id
             .whereLike("notes.title", `%${title}%`) // filtrando a busca pelo título
             .whereIn("name", filterTags)  
-            .innerJoin("notes", "notes.id", "tags.note_id") // inner join juntando as tabelas
+            .innerJoin("notes", "notes.id", "tags.note_id") // inner join juntando as tabelas e suas respectivas chaves
             .groupBy("notes.id") // Filtrar pelo Id - mostrar notas única vez na lista
             .orderBy("notes.title") // ordenar por título
-
-            const userTags = await knex("tags").where({ user_id })
-            const notesWithTags = notes.map(note => {
-                const noteTags = userTags.filter(tag => tag.note_id === note.id)
-
-                return {
-                    ...note, 
-                    tags: noteTags
-                }
-            })
-            return response.json(notesWithTags)
-
         }else{
             // Busca pelo user_id e que tenha a palavra no title
             const notes = await knex("notes")
@@ -111,7 +99,18 @@ class NotesController{
             .whereLike("title", `%${title}%`) // Like verifica antes e depois % da palavra %
             .orderBy("title")
         }
-        return response.json(notes)
+
+        const userTags = await knex("tags").where({ user_id })
+        // filtrando as tags das notas
+        const notesWithTags = notes.map(note => {
+            const noteTags = userTags.filter(tag => tag.note_id === note.id)
+
+            return {
+                ...note, 
+                tags: noteTags
+            }
+        })
+        return response.json(notesWithTags)
     }
 }
 

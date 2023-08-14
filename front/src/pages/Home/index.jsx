@@ -58,12 +58,13 @@ export function Home(){
             setTags(response.data)
         }
         fetchTags() // chama a função anterior
-    }, [])
+    }, [tagsSelected])
     
     useEffect(() =>{
         async function fetchNotes(){
             const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`)
-            console.log(response.data)
+            //const response = await api.get("/notes")
+            //console.log("Notes:" + response.data)
             setNotes(response.data)
         }
         fetchNotes()

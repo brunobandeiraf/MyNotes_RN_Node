@@ -83,7 +83,7 @@ export function Details(){
                         data.tags && // Só mostra se tiver
                         <Section title="Marcadores">
                             {
-                                data.tags.map(link => (
+                                data.tags.map(tag => (
                                     <Tag
                                         key={String(tag.id)} 
                                         title={tag.name}
