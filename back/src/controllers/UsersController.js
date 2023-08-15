@@ -3,24 +3,21 @@ const AppError = require("../utils/AppError")
 
 const sqliteConnection = require("../database/sqlite")
 const UserRepository = require("../repositories/UserRepository")
+const UserCreateService = require("../services/UserCreateService")
 
+
+// UsersController tem somente duas responsabilidades:
+// 1) Receber as requisições
+// 2) Responder as requisições
 class UsersController {
 
     async create (request, response){
         const { name, email, password } = request.body
 
         const userRepository = new UserRepository()
-        
-        const checkUserExists = await userRepository.findByEmail(email)
+        const userCreateService = new UserCreateService(userRepository)
 
-        if(checkUserExists){
-            throw new AppError("Este e-mail já está em uso.")
-        }
-
-        // Criptografando a senha com bcrypt
-        const hashedPassword = await hash(password, 8)
-
-        await userRepository.create({ name, email, password: hashedPassword })
+        await userCreateService.execute({ name, email, password })
 
         return response.status(201).json()
     }
