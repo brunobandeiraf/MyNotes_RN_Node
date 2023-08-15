@@ -24,6 +24,13 @@ Run latest migration
 - npm install jsonwebtoken
 - npm install multer //upload de arquivos
 - npm install cors // habilitar back atenda o front
+
+## TESTS
+- npm install --save-dev jest
+- npx jest --init
+- npm test
+
+## DEPLOY
 - npm install dotenv --save // variáveis de ambientes
 - npx pm2 init // tornar api on-line 24/7
 - npm install pm2 // Instalar pm2
