@@ -76,7 +76,7 @@ export function Home(){
     return(
         <Container>
             <Brand>
-                <h1>Your Notes</h1>
+                <h1>My Notes</h1>
             </Brand>
 
             <Header/>
