@@ -3,6 +3,17 @@ const UserRepositoryInMemory = require("../repositories/UserRepositoryInMemory")
 const AppError = require("../utils/AppError")
 
 describe("UserCreateService", () => {
+
+    let userRepositoryInMemory = null // Banco simulado
+    let userCreateService = null // Regra de negócio
+
+    // beforeEach - antes de cada teste
+    beforeEach(() => {
+        userRepositoryInMemory = new UserRepositoryInMemory()
+        userCreateService = new UserCreateService(userRepositoryInMemory)
+    })
+
+
     it("User should be create", async () => {
         // Simula os dados de entrada do usuário
         const user = {
@@ -11,11 +22,11 @@ describe("UserCreateService", () => {
             password: "1234"
         }
         // Ambiente de banco de dados simulado
-        const userRepositoryInMemory = new UserRepositoryInMemory()
+        //const userRepositoryInMemory = new UserRepositoryInMemory()
     
         // Para testes é importante ter um repositório em memória para isolar o banco dos testes
         // Service recebe o repositório de armazenamento - Inversão de Dependências
-        const userCreateService = new UserCreateService(userRepositoryInMemory)
+        //const userCreateService = new UserCreateService(userRepositoryInMemory)
         
         // Passo o user test para o service do Usuário
         const userCreated = await userCreateService.create(user)
@@ -40,8 +51,8 @@ describe("UserCreateService", () => {
             password: "5678"
         }
 
-        const userRepository = new UserRepositoryInMemory()
-        const userCreateService = new UserCreateService(userRepository)
+        //const userRepository = new UserRepositoryInMemory()
+        //const userCreateService = new UserCreateService(userRepository)
 
         // Cadastra o 1º usuário
         await userCreateService.create(user1)
