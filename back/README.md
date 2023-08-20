@@ -1,4 +1,5 @@
 # API NODE
+Backend em NodeJS, utilizando Express e Knex. 
 
 ## RUNNER
 - node src/server.js
