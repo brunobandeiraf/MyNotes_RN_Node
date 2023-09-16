@@ -1,4 +1,5 @@
 # API NODE
+App em desenvolvimento. 
 
 ## RUNNER
 - node src/server.js
