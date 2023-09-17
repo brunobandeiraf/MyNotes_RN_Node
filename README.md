@@ -7,7 +7,7 @@ App em desenvolvimento.
 - npm run dev
 - npm run migrate
 
-### knex
+### KNEX
 Create migration
 - npx knex migrate:make migrationName
 Run latest migration
